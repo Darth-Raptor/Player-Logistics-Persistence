@@ -11,6 +11,10 @@ if (count _data isEqualTo 0) exitWith {
     ["DEBUG", "No player data found", createHashMapFromArray [
         ["uid", _uid]
     ]] call PLP_fnc_log;
+    [] spawn {
+        sleep 2;
+        [] call PLP_fnc_reapplyLogisticsCargo;
+    };
 };
 
 ["INFO", "Sending player data to client", createHashMapFromArray [
@@ -19,3 +23,8 @@ if (count _data isEqualTo 0) exitWith {
 ]] call PLP_fnc_log;
 
 [_unit, _data] remoteExecCall ["PLP_fnc_applyPlayerData", owner _unit];
+
+[] spawn {
+    sleep 2;
+    [] call PLP_fnc_reapplyLogisticsCargo;
+};

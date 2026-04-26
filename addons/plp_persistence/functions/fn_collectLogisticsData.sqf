@@ -18,6 +18,7 @@ createHashMapFromArray [
     ["fuel", fuel _object],
     ["locked", locked _object],
     ["weaponsCargo", _cargoData getOrDefault ["weaponsCargo", []]],
+    ["weaponsItemsCargo", _cargoData getOrDefault ["weaponsItemsCargo", []]],
     ["magazinesCargo", _cargoData getOrDefault ["magazinesCargo", []]],
     ["itemsCargo", _cargoData getOrDefault ["itemsCargo", []]],
     ["backpacksCargo", _cargoData getOrDefault ["backpacksCargo", []]],

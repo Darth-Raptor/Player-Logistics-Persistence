@@ -4,6 +4,22 @@
 params ["_container", ["_depth", 0]];
 
 private _nestedContainers = [];
+private _fnc_toPairs = {
+    params ["_cargo"];
+
+    private _pairs = [];
+    private _classes = _cargo param [0, []];
+    private _counts = _cargo param [1, []];
+
+    {
+        private _count = _counts param [_forEachIndex, 0];
+        if (_x isNotEqualTo "" && {_count > 0}) then {
+            _pairs pushBack [_x, _count];
+        };
+    } forEach _classes;
+
+    _pairs
+};
 
 if (_depth < 8) then {
     {
@@ -18,9 +34,10 @@ if (_depth < 8) then {
 };
 
 createHashMapFromArray [
-    ["weaponsCargo", weaponsItemsCargo _container],
-    ["magazinesCargo", magazinesAmmoCargo _container],
-    ["itemsCargo", itemCargo _container],
-    ["backpacksCargo", backpackCargo _container],
+    ["weaponsCargo", [getWeaponCargo _container] call _fnc_toPairs],
+    ["weaponsItemsCargo", weaponsItemsCargo _container],
+    ["magazinesCargo", [getMagazineCargo _container] call _fnc_toPairs],
+    ["itemsCargo", [getItemCargo _container] call _fnc_toPairs],
+    ["backpacksCargo", [getBackpackCargo _container] call _fnc_toPairs],
     ["nestedContainers", _nestedContainers]
 ]

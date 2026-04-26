@@ -34,6 +34,7 @@ class CfgFunctions
             class loadLogistics {};
             class registerLogisticsObject {};
             class requestPlayerLoad {};
+            class reapplyLogisticsCargo {};
             class saveAll {};
             class storePlayerData {};
             class upsertLogisticsData {};
