@@ -8,10 +8,18 @@ private _deleted = 0;
 private _skipped = 0;
 
 {
-    private _record = _x;
+    private _record = [_x] call PLP_fnc_normalizeLogisticsRecord;
+    private _validation = [_record] call PLP_fnc_validateLogisticsRecord;
     private _id = _record getOrDefault ["id", ""];
     private _class = _record getOrDefault ["class", ""];
-    if (_id isNotEqualTo "" && {_class isNotEqualTo ""}) then {
+    if !(_validation getOrDefault ["valid", false]) then {
+        _skipped = _skipped + 1;
+        ["WARN", "Skipped invalid logistics record", createHashMapFromArray [
+            ["id", _validation getOrDefault ["id", _id]],
+            ["class", _validation getOrDefault ["class", _class]],
+            ["reason", _validation getOrDefault ["reason", "unknown"]]
+        ]] call PLP_fnc_log;
+    } else {
         private _existing = allMissionObjects "All" select {
             ((_x getVariable ["PLP_persistenceId", ""]) isEqualTo _id) ||
             {([_x] call PLP_fnc_getDefaultObjectId) isEqualTo _id}

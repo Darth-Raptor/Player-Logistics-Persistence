@@ -56,11 +56,14 @@ private _fnc_markNestedContainers = {
             private _category = _x getOrDefault ["category", ""];
             private _class = _x getOrDefault ["class", ""];
             PLP_logisticsData pushBack createHashMapFromArray [
+                ["recordType", "logistics"],
+                ["schemaVersion", 1],
                 ["id", _id],
                 ["class", _class],
                 ["category", _category],
                 ["deleted", true],
-                ["timestamp", serverTime]
+                ["timestamp", serverTime],
+                ["lastWrite", serverTime]
             ];
             _tombstonesCreated = _tombstonesCreated + 1;
         };

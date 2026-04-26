@@ -6,6 +6,16 @@ params ["_data"];
 
 if !(_data isEqualType createHashMap) exitWith {};
 
+_data = [_data] call PLP_fnc_normalizeLogisticsRecord;
+private _validation = [_data] call PLP_fnc_validateLogisticsRecord;
+if !(_validation getOrDefault ["valid", false]) exitWith {
+    ["WARN", "Rejected logistics data", createHashMapFromArray [
+        ["id", _validation getOrDefault ["id", ""]],
+        ["class", _validation getOrDefault ["class", ""]],
+        ["reason", _validation getOrDefault ["reason", "unknown"]]
+    ]] call PLP_fnc_log;
+};
+
 private _id = _data getOrDefault ["id", ""];
 if (_id isEqualTo "") exitWith {};
 
@@ -13,5 +23,8 @@ private _index = PLP_logisticsData findIf {(_x getOrDefault ["id", ""]) isEqualT
 if (_index < 0) then {
     PLP_logisticsData pushBack _data;
 } else {
-    PLP_logisticsData set [_index, _data];
+    private _existing = [PLP_logisticsData select _index] call PLP_fnc_normalizeLogisticsRecord;
+    if ((_data getOrDefault ["lastWrite", 0]) >= (_existing getOrDefault ["lastWrite", 0])) then {
+        PLP_logisticsData set [_index, _data];
+    };
 };

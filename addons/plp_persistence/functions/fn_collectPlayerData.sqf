@@ -10,6 +10,8 @@ if (!isNull _vehicle) then {
 };
 
 createHashMapFromArray [
+    ["recordType", "player"],
+    ["schemaVersion", 1],
     ["posASL", getPosASL _unit],
     ["dir", getDir _unit],
     ["vectorUp", vectorUp _unit],
@@ -17,5 +19,6 @@ createHashMapFromArray [
     ["damage", damage _unit],
     ["stance", stance _unit],
     ["vehicleId", _vehicleId],
-    ["timestamp", serverTime]
+    ["timestamp", serverTime],
+    ["lastWrite", serverTime]
 ]

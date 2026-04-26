@@ -6,6 +6,14 @@ params ["_unit", "_data"];
 if (isNull _unit || {!local _unit} || {!alive _unit}) exitWith {};
 if !(_data isEqualType createHashMap) exitWith {};
 
+_data = [_data] call PLP_fnc_normalizePlayerData;
+private _validation = [_data] call PLP_fnc_validatePlayerData;
+if !(_validation getOrDefault ["valid", false]) exitWith {
+    ["WARN", "Rejected player restore data", createHashMapFromArray [
+        ["reason", _validation getOrDefault ["reason", "unknown"]]
+    ]] call PLP_fnc_log;
+};
+
 _unit setUnitLoadout (_data getOrDefault ["loadout", getUnitLoadout _unit]);
 
 if (missionNamespace getVariable ["PLP_persistPlayerPosition", true]) then {

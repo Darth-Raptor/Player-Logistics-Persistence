@@ -8,6 +8,8 @@ private _category = [_object] call PLP_fnc_getObjectCategory;
 private _cargoData = [_object] call PLP_fnc_collectCargoData;
 
 createHashMapFromArray [
+    ["recordType", "logistics"],
+    ["schemaVersion", 1],
     ["id", _id],
     ["class", typeOf _object],
     ["category", _category],
@@ -24,5 +26,6 @@ createHashMapFromArray [
     ["backpacksCargo", _cargoData getOrDefault ["backpacksCargo", []]],
     ["nestedContainers", _cargoData getOrDefault ["nestedContainers", []]],
     ["vars", _object getVariable ["PLP_persistentVars", createHashMap]],
-    ["timestamp", serverTime]
+    ["timestamp", serverTime],
+    ["lastWrite", serverTime]
 ]

@@ -24,6 +24,19 @@ if (isServer) then {
     PLP_playerData = profileNamespace getVariable [PLP_playersKey, createHashMap];
     PLP_logisticsData = profileNamespace getVariable [PLP_logisticsKey, []];
 
+    if !(PLP_playerData isEqualType createHashMap) then {
+        PLP_playerData = createHashMap;
+    };
+    if !(PLP_logisticsData isEqualType []) then {
+        PLP_logisticsData = [];
+    };
+
+    {
+        PLP_playerData set [_x, [PLP_playerData get _x] call PLP_fnc_normalizePlayerData];
+    } forEach keys PLP_playerData;
+
+    PLP_logisticsData = PLP_logisticsData apply {[_x] call PLP_fnc_normalizeLogisticsRecord};
+
     ["INFO", "Loaded profileNamespace state", createHashMapFromArray [
         ["players", count PLP_playerData],
         ["logisticsRecords", count PLP_logisticsData]

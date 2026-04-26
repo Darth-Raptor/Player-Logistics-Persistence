@@ -17,6 +17,15 @@ if (count _data isEqualTo 0) exitWith {
     };
 };
 
+_data = [_data] call PLP_fnc_normalizePlayerData;
+private _validation = [_data] call PLP_fnc_validatePlayerData;
+if !(_validation getOrDefault ["valid", false]) exitWith {
+    ["WARN", "Skipped invalid player load data", createHashMapFromArray [
+        ["uid", _uid],
+        ["reason", _validation getOrDefault ["reason", "unknown"]]
+    ]] call PLP_fnc_log;
+};
+
 ["INFO", "Sending player data to client", createHashMapFromArray [
     ["uid", _uid],
     ["owner", owner _unit]

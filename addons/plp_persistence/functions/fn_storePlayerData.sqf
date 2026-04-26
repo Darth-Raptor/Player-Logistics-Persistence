@@ -6,7 +6,16 @@ params ["_uid", "_data"];
 
 if (_uid isEqualTo "" || {!(_data isEqualType createHashMap)}) exitWith {};
 
-PLP_playerData set [_uid, _data];
+private _normalized = [_data] call PLP_fnc_normalizePlayerData;
+private _validation = [_normalized] call PLP_fnc_validatePlayerData;
+if !(_validation getOrDefault ["valid", false]) exitWith {
+    ["WARN", "Rejected player data", createHashMapFromArray [
+        ["uid", _uid],
+        ["reason", _validation getOrDefault ["reason", "unknown"]]
+    ]] call PLP_fnc_log;
+};
+
+PLP_playerData set [_uid, _normalized];
 
 ["DEBUG", "Stored player data", createHashMapFromArray [
     ["uid", _uid],

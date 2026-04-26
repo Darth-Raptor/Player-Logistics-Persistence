@@ -16,10 +16,13 @@ private _category = [_object] call PLP_fnc_getObjectCategory;
 private _class = typeOf _object;
 private _index = PLP_logisticsData findIf {(_x getOrDefault ["id", ""]) isEqualTo _id};
 private _record = createHashMapFromArray [
+    ["recordType", "logistics"],
+    ["schemaVersion", 1],
     ["id", _id],
     ["class", _class],
     ["category", _category],
     ["deleted", true],
+    ["lastWrite", serverTime],
     ["timestamp", serverTime]
 ];
 

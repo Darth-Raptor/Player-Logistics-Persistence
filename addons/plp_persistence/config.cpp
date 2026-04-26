@@ -31,12 +31,16 @@ class CfgFunctions
             class isLogisticsPersistent {};
             class log {};
             class loadLogistics {};
+            class normalizeLogisticsRecord {};
+            class normalizePlayerData {};
             class registerLogisticsObject {};
             class requestPlayerLoad {};
             class reapplyLogisticsCargo {};
             class saveAll {};
             class storePlayerData {};
             class upsertLogisticsData {};
+            class validateLogisticsRecord {};
+            class validatePlayerData {};
         };
     };
 };
