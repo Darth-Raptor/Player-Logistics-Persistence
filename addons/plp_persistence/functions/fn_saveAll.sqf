@@ -17,7 +17,6 @@ PLP_logisticsData = [];
 private _objectsSaved = 0;
 private _tombstonesPreserved = 0;
 private _tombstonesCreated = 0;
-private _disabledPreserved = 0;
 private _nestedCargoContainers = [];
 private _fnc_markNestedContainers = {
     params ["_container"];
@@ -55,19 +54,15 @@ private _fnc_markNestedContainers = {
             _tombstonesPreserved = _tombstonesPreserved + 1;
         } else {
             private _category = _x getOrDefault ["category", ""];
-            if (_category isNotEqualTo "" && {!([_category] call PLP_fnc_isCategoryEnabled)}) then {
-                PLP_logisticsData pushBack _x;
-                _disabledPreserved = _disabledPreserved + 1;
-            } else {
-                PLP_logisticsData pushBack createHashMapFromArray [
-                    ["id", _id],
-                    ["class", _x getOrDefault ["class", ""]],
-                    ["category", _category],
-                    ["deleted", true],
-                    ["timestamp", serverTime]
-                ];
-                _tombstonesCreated = _tombstonesCreated + 1;
-            };
+            private _class = _x getOrDefault ["class", ""];
+            PLP_logisticsData pushBack createHashMapFromArray [
+                ["id", _id],
+                ["class", _class],
+                ["category", _category],
+                ["deleted", true],
+                ["timestamp", serverTime]
+            ];
+            _tombstonesCreated = _tombstonesCreated + 1;
         };
     };
 } forEach _previousLogisticsData;
@@ -81,6 +76,5 @@ saveProfileNamespace;
     ["objects", _objectsSaved],
     ["records", count PLP_logisticsData],
     ["tombstonesPreserved", _tombstonesPreserved],
-    ["tombstonesCreated", _tombstonesCreated],
-    ["disabledPreserved", _disabledPreserved]
+    ["tombstonesCreated", _tombstonesCreated]
 ]] call PLP_fnc_log;

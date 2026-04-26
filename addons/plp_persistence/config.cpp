@@ -26,7 +26,6 @@ class CfgFunctions
             class collectPlayerData {};
             class deleteObjectAndSave {};
             class getDefaultObjectId {};
-            class isCategoryEnabled {};
             class getObjectCategory {};
             class init { postInit = 1; };
             class isLogisticsPersistent {};
