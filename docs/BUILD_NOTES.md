@@ -11,6 +11,13 @@ Status:
 - Vehicle, crate, player, nested backpack, removable restored cargo, and loaded magazine ammo persistence have been tested successfully.
 - Category and class-name persistence disable settings were removed. Logistics persistence is now default-on, with per-object opt-out through `PLP_persistenceDisabled`.
 
+## Version 0.2.1
+
+Status:
+
+- Fixed hosted dedicated server compatibility issue where HashMap normalization used unary copy syntax that could produce a scalar/NaN value before `getOrDefault`.
+- Player and logistics normalization now updates the validated HashMap record directly.
+
 ## Packing
 
 When Arma and the dedicated server are closed, pack:
