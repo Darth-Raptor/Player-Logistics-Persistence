@@ -4,9 +4,9 @@ class CfgPatches
     {
         name = "PLP Persistence";
         author = "Codex";
-        version = 0.203;
-        versionStr = "0.2.3";
-        versionAr[] = {0, 2, 3};
+        version = 0.204;
+        versionStr = "0.2.4";
+        versionAr[] = {0, 2, 4};
         requiredVersion = 2.14;
         requiredAddons[] = {"A3_Functions_F", "cba_main", "cba_settings", "cba_xeh"};
         units[] = {};
@@ -32,7 +32,9 @@ class CfgFunctions
             class flushPlayerData {};
             class getDefaultObjectId {};
             class getObjectCategory {};
+            class handleServerSaveAndExit {};
             class init { postInit = 1; };
+            class isAdminClient {};
             class isLogisticsPersistent {};
             class log {};
             class loadLogistics {};
@@ -43,7 +45,9 @@ class CfgFunctions
             class requestPlayerLoad {};
             class reapplyLogisticsCargo {};
             class saveAndExit {};
+            class saveAndExitComplete {};
             class saveAll {};
+            class serverSaveAndExit {};
             class storePlayerData {};
             class upsertLogisticsData {};
             class validateLogisticsRecord {};
