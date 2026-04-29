@@ -32,13 +32,25 @@ if (isServer) then {
 
     addMissionEventHandler ["HandleDisconnect", {
         params ["_unit", "_id", "_uid", "_name"];
-        if (!isNull _unit && {_uid isNotEqualTo ""}) then {
+        if (_uid isNotEqualTo "") then {
             ["INFO", "Saving disconnecting player", createHashMapFromArray [
                 ["uid", _uid],
-                ["name", _name]
+                ["name", _name],
+                ["hasUnit", !isNull _unit]
             ]] call PLP_fnc_log;
-            [_uid, [_unit] call PLP_fnc_collectPlayerData] call PLP_fnc_storePlayerData;
-            [] call PLP_fnc_saveAll;
+            if (!isNull _unit && {alive _unit}) then {
+                [_uid, [_unit] call PLP_fnc_collectPlayerData] call PLP_fnc_storePlayerData;
+            } else {
+                ["WARN", "Disconnecting player unit unavailable; flushing cached player data", createHashMapFromArray [
+                    ["uid", _uid],
+                    ["name", _name]
+                ]] call PLP_fnc_log;
+            };
+
+            [] call PLP_fnc_ensureServerState;
+            profileNamespace setVariable [PLP_playersKey, PLP_playerData];
+            profileNamespace setVariable [PLP_logisticsKey, PLP_logisticsData];
+            saveProfileNamespace;
         };
         false
     }];
@@ -62,11 +74,6 @@ if (hasInterface) then {
             [_unit, getPlayerUID _unit] remoteExecCall ["PLP_fnc_requestPlayerLoad", 2];
         }];
 
-        while {true} do {
-            sleep (missionNamespace getVariable ["PLP_saveInterval", 120]);
-            if (!isNull player && {alive player}) then {
-                [getPlayerUID player, [player] call PLP_fnc_collectPlayerData] remoteExecCall ["PLP_fnc_storePlayerData", 2];
-            };
-        };
+        [] call PLP_fnc_registerAceActions;
     };
 };
