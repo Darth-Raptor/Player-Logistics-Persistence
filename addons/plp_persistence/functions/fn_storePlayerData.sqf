@@ -2,6 +2,7 @@
     Server stores player state in memory; saveAll flushes it to disk.
 */
 if (!isServer) exitWith {};
+[] call PLP_fnc_ensureServerState;
 params ["_uid", "_data"];
 
 if (_uid isEqualTo "" || {!(_data isEqualType createHashMap)}) exitWith {};

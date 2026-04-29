@@ -2,6 +2,7 @@
     Reapplies saved logistics cargo on the server after JIP/reconnect.
 */
 if (!isServer) exitWith {};
+[] call PLP_fnc_ensureServerState;
 
 private _reapplied = 0;
 private _missing = 0;

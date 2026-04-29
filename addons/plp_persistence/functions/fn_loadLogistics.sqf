@@ -2,6 +2,7 @@
     Recreates saved logistics objects on the server.
 */
 if (!isServer) exitWith {};
+[] call PLP_fnc_ensureServerState;
 
 private _loaded = 0;
 private _deleted = 0;

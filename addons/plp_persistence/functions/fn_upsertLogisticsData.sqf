@@ -2,6 +2,7 @@
     Updates one logistics record in PLP_logisticsData by id.
 */
 if (!isServer) exitWith {};
+[] call PLP_fnc_ensureServerState;
 params ["_data"];
 
 if !(_data isEqualType createHashMap) exitWith {};

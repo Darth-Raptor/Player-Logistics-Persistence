@@ -2,6 +2,7 @@
     Saves players and logistics to profileNamespace.
 */
 if (!isServer) exitWith {};
+[] call PLP_fnc_ensureServerState;
 
 private _playersSaved = 0;
 {
@@ -11,7 +12,7 @@ private _playersSaved = 0;
     };
 } forEach allPlayers;
 
-private _previousLogisticsData = +PLP_logisticsData;
+private _previousLogisticsData = PLP_logisticsData;
 private _seen = createHashMap;
 PLP_logisticsData = [];
 private _objectsSaved = 0;

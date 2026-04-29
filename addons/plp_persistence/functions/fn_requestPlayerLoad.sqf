@@ -2,6 +2,7 @@
     Server receives a player load request and sends saved state to the owning client.
 */
 if (!isServer) exitWith {};
+[] call PLP_fnc_ensureServerState;
 params ["_unit", "_uid"];
 
 if (isNull _unit || {_uid isEqualTo ""}) exitWith {};

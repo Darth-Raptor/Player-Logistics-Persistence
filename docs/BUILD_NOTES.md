@@ -18,6 +18,14 @@ Status:
 - Fixed hosted dedicated server compatibility issue where HashMap normalization used unary copy syntax that could produce a scalar/NaN value before `getOrDefault`.
 - Player and logistics normalization now updates the validated HashMap record directly.
 
+## Version 0.2.2
+
+Status:
+
+- Added an idempotent server-state bootstrap used by save, load, clear, delete, store, upsert, and reconnect cargo reapply paths.
+- Hardened admin/debug calls made before normal postInit state is available or during mission transitions.
+- Removed another HashMap/array unary-copy use from `saveAll`.
+
 ## Packing
 
 When Arma and the dedicated server are closed, pack:

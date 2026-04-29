@@ -2,6 +2,7 @@
     Deletes a persistent object, writes a tombstone, and flushes persistence.
 */
 if (!isServer) exitWith {};
+[] call PLP_fnc_ensureServerState;
 params ["_object"];
 
 if (isNull _object) exitWith {};

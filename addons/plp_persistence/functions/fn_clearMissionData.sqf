@@ -2,6 +2,7 @@
     Clears saved persistence data for the current mission.
 */
 if (!isServer) exitWith {};
+[] call PLP_fnc_ensureServerState;
 
 profileNamespace setVariable [PLP_playersKey, nil];
 profileNamespace setVariable [PLP_logisticsKey, nil];

@@ -3,33 +3,13 @@
 */
 
 if (isServer) then {
-    private _missionId = missionName;
-    if (missionNamespace getVariable ["PLP_keyByMissionPbo", true]) then {
-        _missionId = missionNameSource;
-        if (_missionId isEqualTo "") then {
-            _missionId = missionName;
-        };
-    };
-
-    PLP_missionKey = format ["PLP:%1:%2", worldName, _missionId];
-    PLP_playersKey = PLP_missionKey + ":players";
-    PLP_logisticsKey = PLP_missionKey + ":logistics";
+    [] call PLP_fnc_ensureServerState;
 
     ["INFO", "Initializing persistence", createHashMapFromArray [
         ["missionKey", PLP_missionKey],
         ["playersKey", PLP_playersKey],
         ["logisticsKey", PLP_logisticsKey]
     ]] call PLP_fnc_log;
-
-    PLP_playerData = profileNamespace getVariable [PLP_playersKey, createHashMap];
-    PLP_logisticsData = profileNamespace getVariable [PLP_logisticsKey, []];
-
-    if !(PLP_playerData isEqualType createHashMap) then {
-        PLP_playerData = createHashMap;
-    };
-    if !(PLP_logisticsData isEqualType []) then {
-        PLP_logisticsData = [];
-    };
 
     {
         PLP_playerData set [_x, [PLP_playerData get _x] call PLP_fnc_normalizePlayerData];
