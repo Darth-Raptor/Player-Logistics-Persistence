@@ -22,7 +22,7 @@ if (missionNamespace getVariable ["PLP_aceActionsRegistered", false]) exitWith {
 
     private _confirmPlayerSaveAndExitAction = [
         "PLP_confirmPlayerSaveAndExit",
-        "Confirm Player Save & Exit",
+        "Confirm Save & Exit",
         "",
         {[] call PLP_fnc_saveAndExit;},
         {!isNull player && {alive player} && {getPlayerUID player isNotEqualTo ""}}
@@ -38,7 +38,7 @@ if (missionNamespace getVariable ["PLP_aceActionsRegistered", false]) exitWith {
 
     private _confirmServerSaveAndExitAction = [
         "PLP_confirmServerSaveAndExit",
-        "Confirm Server Save & Exit",
+        "Confirm Save & Exit",
         "",
         {[] call PLP_fnc_serverSaveAndExit;},
         {!isNull player && {alive player} && {[] call PLP_fnc_isAdminClient}}
