@@ -75,9 +75,9 @@ class PLP_fnc_saveAll { allowedTargets = 2; };
 class PLP_fnc_clearMissionData { allowedTargets = 2; };
 ```
 
-When ACE Interaction is loaded, players get a self interaction named `Player Save & Exit`. It opens a `Confirm Save & Exit` action, saves the local player state, flushes it on the server, then exits that client from the mission.
+When ACE Interaction is loaded, players get a self interaction named `Player Save & Exit`. It opens a confirmation action, saves the local player state, flushes it on the server, then exits that client from the mission.
 
-Logged-in admins also get `Server Save & Exit`. It opens a `Confirm Save & Exit` action, runs a full server save, then exits only the requesting admin client after the save completes.
+Logged-in admins also get `Server Save & Exit`. It opens a confirmation action, runs a full server save, then exits only the requesting admin client after the save completes.
 
 ## Admin Utilities
 

@@ -57,12 +57,6 @@ Status:
 - Added ACE confirmation sub-actions before either exit flow executes.
 - Excluded vehicles with AI crew from default logistics persistence unless explicitly forced persistent with `PLP_persistent`.
 
-## Version 0.2.7
-
-Status:
-
-- Standardized ACE confirmation submenu labels to `Confirm Save & Exit`.
-
 ## Packing
 
 When Arma and the dedicated server are closed, pack:
