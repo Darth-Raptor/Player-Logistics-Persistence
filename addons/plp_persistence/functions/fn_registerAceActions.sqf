@@ -12,9 +12,17 @@ if (missionNamespace getVariable ["PLP_aceActionsRegistered", false]) exitWith {
         {!isNil "ace_interact_menu_fnc_addActionToClass"}
     };
 
-    private _saveAndExitAction = [
-        "PLP_saveAndExit",
-        "Save & Exit",
+    private _playerSaveAndExitAction = [
+        "PLP_playerSaveAndExit",
+        "Player Save & Exit",
+        "",
+        {},
+        {!isNull player && {alive player} && {getPlayerUID player isNotEqualTo ""}}
+    ] call ace_interact_menu_fnc_createAction;
+
+    private _confirmPlayerSaveAndExitAction = [
+        "PLP_confirmPlayerSaveAndExit",
+        "Confirm Player Save & Exit",
         "",
         {[] call PLP_fnc_saveAndExit;},
         {!isNull player && {alive player} && {getPlayerUID player isNotEqualTo ""}}
@@ -24,11 +32,21 @@ if (missionNamespace getVariable ["PLP_aceActionsRegistered", false]) exitWith {
         "PLP_serverSaveAndExit",
         "Server Save & Exit",
         "",
+        {},
+        {!isNull player && {alive player} && {[] call PLP_fnc_isAdminClient}}
+    ] call ace_interact_menu_fnc_createAction;
+
+    private _confirmServerSaveAndExitAction = [
+        "PLP_confirmServerSaveAndExit",
+        "Confirm Server Save & Exit",
+        "",
         {[] call PLP_fnc_serverSaveAndExit;},
         {!isNull player && {alive player} && {[] call PLP_fnc_isAdminClient}}
     ] call ace_interact_menu_fnc_createAction;
 
-    ["CAManBase", 1, ["ACE_SelfActions"], _saveAndExitAction, true] call ace_interact_menu_fnc_addActionToClass;
+    ["CAManBase", 1, ["ACE_SelfActions"], _playerSaveAndExitAction, true] call ace_interact_menu_fnc_addActionToClass;
+    ["CAManBase", 1, ["ACE_SelfActions", "PLP_playerSaveAndExit"], _confirmPlayerSaveAndExitAction, true] call ace_interact_menu_fnc_addActionToClass;
     ["CAManBase", 1, ["ACE_SelfActions"], _serverSaveAndExitAction, true] call ace_interact_menu_fnc_addActionToClass;
+    ["CAManBase", 1, ["ACE_SelfActions", "PLP_serverSaveAndExit"], _confirmServerSaveAndExitAction, true] call ace_interact_menu_fnc_addActionToClass;
     missionNamespace setVariable ["PLP_aceActionsRegistered", true];
 };
