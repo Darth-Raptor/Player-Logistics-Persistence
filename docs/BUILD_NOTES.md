@@ -42,6 +42,13 @@ Status:
 - Added optional ACE self interaction for logged-in admins: `Server Save & Exit`.
 - The admin action asks the server to run `PLP_fnc_saveAll`, then exits only the requesting admin client after the server save completes.
 
+## Version 0.2.5
+
+Status:
+
+- Fixed player-only `Save & Exit` clobbering logistics persistence with stale in-memory logistics data.
+- `PLP_fnc_flushPlayerData` now writes only the player profile key. Full logistics writes remain owned by `PLP_fnc_saveAll` and admin `Server Save & Exit`.
+
 ## Packing
 
 When Arma and the dedicated server are closed, pack:

@@ -4,9 +4,9 @@ class CfgPatches
     {
         name = "PLP Persistence";
         author = "Codex";
-        version = 0.204;
-        versionStr = "0.2.4";
-        versionAr[] = {0, 2, 4};
+        version = 0.205;
+        versionStr = "0.2.5";
+        versionAr[] = {0, 2, 5};
         requiredVersion = 2.14;
         requiredAddons[] = {"A3_Functions_F", "cba_main", "cba_settings", "cba_xeh"};
         units[] = {};
