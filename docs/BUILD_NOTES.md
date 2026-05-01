@@ -35,13 +35,6 @@ Status:
 - `Save & Exit` sends the current local player state to the server, immediately flushes it to `profileNamespace`, then exits the player locally.
 - Avoided adding a high-frequency player polling loop.
 
-## Version 0.2.4
-
-Status:
-
-- Added optional ACE self interaction for logged-in admins: `Server Save & Exit`.
-- The admin action asks the server to run `PLP_fnc_saveAll`, then exits only the requesting admin client after the server save completes.
-
 ## Packing
 
 When Arma and the dedicated server are closed, pack:

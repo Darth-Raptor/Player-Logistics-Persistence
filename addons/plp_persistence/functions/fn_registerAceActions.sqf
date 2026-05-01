@@ -12,7 +12,7 @@ if (missionNamespace getVariable ["PLP_aceActionsRegistered", false]) exitWith {
         {!isNil "ace_interact_menu_fnc_addActionToClass"}
     };
 
-    private _saveAndExitAction = [
+    private _action = [
         "PLP_saveAndExit",
         "Save & Exit",
         "",
@@ -20,15 +20,7 @@ if (missionNamespace getVariable ["PLP_aceActionsRegistered", false]) exitWith {
         {!isNull player && {alive player} && {getPlayerUID player isNotEqualTo ""}}
     ] call ace_interact_menu_fnc_createAction;
 
-    private _serverSaveAndExitAction = [
-        "PLP_serverSaveAndExit",
-        "Server Save & Exit",
-        "",
-        {[] call PLP_fnc_serverSaveAndExit;},
-        {!isNull player && {alive player} && {[] call PLP_fnc_isAdminClient}}
-    ] call ace_interact_menu_fnc_createAction;
-
-    ["CAManBase", 1, ["ACE_SelfActions"], _saveAndExitAction, true] call ace_interact_menu_fnc_addActionToClass;
-    ["CAManBase", 1, ["ACE_SelfActions"], _serverSaveAndExitAction, true] call ace_interact_menu_fnc_addActionToClass;
+    ["CAManBase", 1, ["ACE_SelfActions"], _action, true] call ace_interact_menu_fnc_addActionToClass;
     missionNamespace setVariable ["PLP_aceActionsRegistered", true];
 };
+
