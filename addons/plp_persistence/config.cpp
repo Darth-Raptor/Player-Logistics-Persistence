@@ -3,7 +3,7 @@ class CfgPatches
     class plp_persistence
     {
         name = "PLP Persistence";
-        author = "Darth Raptor";
+        author = "Codex";
         version = 0.207;
         versionStr = "0.2.7";
         versionAr[] = {0, 2, 7};
