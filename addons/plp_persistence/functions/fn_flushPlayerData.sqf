@@ -15,11 +15,12 @@ if (_uid isEqualTo "" || {!(_data isEqualType createHashMap)}) exitWith {
 [_uid, _data] call PLP_fnc_storePlayerData;
 
 profileNamespace setVariable [PLP_playersKey, PLP_playerData];
+profileNamespace setVariable [PLP_logisticsKey, PLP_logisticsData];
 saveProfileNamespace;
 
 ["INFO", "Flushed player data", createHashMapFromArray [
     ["uid", _uid],
     ["name", _name],
-    ["players", count PLP_playerData],
-    ["logisticsTouched", false]
+    ["players", count PLP_playerData]
 ]] call PLP_fnc_log;
+
