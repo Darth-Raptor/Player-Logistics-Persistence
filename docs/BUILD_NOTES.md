@@ -26,15 +26,6 @@ Status:
 - Hardened admin/debug calls made before normal postInit state is available or during mission transitions.
 - Removed another HashMap/array unary-copy use from `saveAll`.
 
-## Version 0.2.3
-
-Status:
-
-- Disconnect handling now always flushes cached player data for a valid UID, even if the disconnecting unit is already unavailable.
-- Added optional ACE self interaction: `Save & Exit`.
-- `Save & Exit` sends the current local player state to the server, immediately flushes it to `profileNamespace`, then exits the player locally.
-- Avoided adding a high-frequency player polling loop.
-
 ## Packing
 
 When Arma and the dedicated server are closed, pack:

@@ -68,12 +68,9 @@ If your mission uses a restrictive `CfgRemoteExec`, whitelist these functions:
 class PLP_fnc_applyPlayerData { allowedTargets = 1; };
 class PLP_fnc_requestPlayerLoad { allowedTargets = 2; };
 class PLP_fnc_storePlayerData { allowedTargets = 2; };
-class PLP_fnc_flushPlayerData { allowedTargets = 2; };
 class PLP_fnc_saveAll { allowedTargets = 2; };
 class PLP_fnc_clearMissionData { allowedTargets = 2; };
 ```
-
-When ACE Interaction is loaded, players get a self interaction named `Save & Exit`. It saves the local player state, flushes it on the server, then exits that client from the mission.
 
 ## Admin Utilities
 
