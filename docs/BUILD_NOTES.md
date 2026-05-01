@@ -49,14 +49,6 @@ Status:
 - Fixed player-only `Save & Exit` clobbering logistics persistence with stale in-memory logistics data.
 - `PLP_fnc_flushPlayerData` now writes only the player profile key. Full logistics writes remain owned by `PLP_fnc_saveAll` and admin `Server Save & Exit`.
 
-## Version 0.2.6
-
-Status:
-
-- Renamed ACE interactions to `Player Save & Exit` and `Server Save & Exit`.
-- Added ACE confirmation sub-actions before either exit flow executes.
-- Excluded vehicles with AI crew from default logistics persistence unless explicitly forced persistent with `PLP_persistent`.
-
 ## Packing
 
 When Arma and the dedicated server are closed, pack:

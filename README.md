@@ -75,9 +75,9 @@ class PLP_fnc_saveAll { allowedTargets = 2; };
 class PLP_fnc_clearMissionData { allowedTargets = 2; };
 ```
 
-When ACE Interaction is loaded, players get a self interaction named `Player Save & Exit`. It opens a confirmation action, saves the local player state, flushes it on the server, then exits that client from the mission.
+When ACE Interaction is loaded, players get a self interaction named `Save & Exit`. It saves the local player state, flushes it on the server, then exits that client from the mission.
 
-Logged-in admins also get `Server Save & Exit`. It opens a confirmation action, runs a full server save, then exits only the requesting admin client after the save completes.
+Logged-in admins also get `Server Save & Exit`. It runs a full server save, then exits only the requesting admin client after the save completes.
 
 ## Admin Utilities
 
@@ -109,7 +109,6 @@ Delete the object you are looking at and save a deletion tombstone:
 
 - Persistence keys include `worldName` and, by default, `missionNameSource`, so saves bleed across missions with the same PBO/source name on the same map.
 - Editor and Zeus placed logistics objects are saved by default. Individual objects can opt out with `PLP_persistenceDisabled`.
-- Vehicles with AI crew are excluded from default persistence unless explicitly forced with `PLP_persistent`.
 - Backpacks and other containers inside saved objects have their internal cargo restored recursively.
 - Dynamically spawned logistics objects should receive a stable `PLP_persistenceId` if you want them to reload as the same object after restart.
 - Deleted objects are saved as deleted tombstones on the next save so Eden-placed objects do not reappear at their original positions.
